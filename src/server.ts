@@ -5,15 +5,15 @@ import express, {
 } from "express";
 
 import { Pool, Query } from "pg";
+import config from "./config";
 
 const app: Application = express();
-const port = 5000;
+const port = config.port;
 
 app.use(express.json());
 // pool neondb  connecting
 const pool = new Pool({
-  connectionString:
-    "postgresql://neondb_owner:npg_pD4iPojg3TzX@ep-sparkling-poetry-aqszmgkr-pooler.c-8.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+  connectionString: config.connection_string
 });
 
 // connecting init db database
