@@ -23,6 +23,20 @@ export const initDB = async () => {
       )
              
       `);
+
+    await pool.query(`
+       CREATE TABLE IF NOT EXISTS profiles (
+      id SERIAL PRIMARY KEY,
+      user_id INT UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+      bio TEXT,
+      address TEXT,
+      phone VARCHAR (13),
+      gender VARCHAR (10),    
+      
+      create_at TIMESTAMP DEFAULT NOW(),
+      update_at TIMESTAMP DEFAULT NOW()
+      )
+      `);
     console.log("database connected successfully");
   } catch (error) {
     console.log(error);
